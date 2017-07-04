@@ -13,9 +13,19 @@ This guide describes how to write time-series data (e.g. load test measurements)
 
 ## Setting up InfluxDb
 
-Installation instructions are well described (https://docs.influxdata.com/influxdb/v0.9/introduction/installation/), I've used *brew* to do the set up on MacBook Pro/OS X El Capitan 10.11.6. After the installation it can be started either as background service (more suitable for CI environment) or as a process (more suitable for dev environment/workstation).
+Installation instructions are well described (https://docs.influxdata.com/influxdb/v0.9/introduction/installation/), I've used *brew* to do the set up on MacBook Pro/OS X El Capitan 10.11.6. 
 
-For launching the CLI use *influxd* command.
+After the installation we need to start the *influxd* daemon which will run the database server. It can be done in 2 ways:
+- via brew (this also will configure the daemon to launch during the boot process)
+```sh
+$ brew services start influxdb
+```
+- by running the daemon manually (this is a one-off thing)
+```sh
+$ influxd -config /usr/local/etc/influxdb.conf
+```
+
+Once the *influxd* daemon is launched, we can access the InfluxDB CLI via *influx* command.
 
 ## Writing data to InfluxDb
 
